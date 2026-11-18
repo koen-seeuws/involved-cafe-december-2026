@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/MyToDoList/" />
+  <Folder Name="/MyToDoList/1. Core/">
+    <Project Path="Core/MyToDoList.Core.Domain.Abstractions/MyToDoList.Core.Domain.Abstractions.csproj" />
+    <Project Path="Core/MyToDoList.Core.Domain/MyToDoList.Core.Domain.csproj" />
+  </Folder>
+  <Folder Name="/MyToDoList/2. Application/">
+    <Project Path="Application/MyToDoList.Application.Abstractions/MyToDoList.Application.Abstractions.csproj" />
+    <Project Path="Application/MyToDoList.Application.Business/MyToDoList.Application.Business.csproj" />
+  </Folder>
+  <Folder Name="/MyToDoList/3. Infrastructure/">
+    <Project Path="MyToDoList.Infrastructure.EFC/MyToDoList.Infrastructure.EFC.csproj" />
+  </Folder>
+  <Folder Name="/MyToDoList/4. Presentation/" />
+</Solution>
