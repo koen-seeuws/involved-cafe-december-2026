@@ -510,3 +510,8 @@ FodyWeavers.xsd
 .env
 data/
 src/MyGameCollection.Web/data/
+
+# Local SQLite database
+*.db
+*.db-shm
+*.db-wal

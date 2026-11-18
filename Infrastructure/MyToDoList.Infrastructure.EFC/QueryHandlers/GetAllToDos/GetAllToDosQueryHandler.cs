@@ -18,6 +18,7 @@ public record GetAllToDosQueryHandler : IQueryHandler<GetAllToDosQuery, IEnumera
         => await _dbContext.ToDos
             .Select(todo => new ToDoDto
             {
+                Key = todo.Key,
                 Title = todo.Title,
                 Description = todo.Description,
                 Owner = todo.ToDoList.Owner,

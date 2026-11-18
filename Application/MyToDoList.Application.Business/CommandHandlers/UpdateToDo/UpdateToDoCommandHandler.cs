@@ -8,17 +8,20 @@ namespace MyToDoList.Application.Business.Commands.UpdateToDo;
 public class UpdateToDoCommandHandler : ICommandHandler<UpdateToDoCommand>
 {
     private readonly IRepository<ToDoList, string> _repository;
+    private readonly IUserContext _userContext;
     
-    public UpdateToDoCommandHandler(IRepository<ToDoList, string> repository)
+    public UpdateToDoCommandHandler(IRepository<ToDoList, string> repository, IUserContext userContext)
     {
         _repository = repository;
+        _userContext = userContext;
     }
     
     public async Task HandleAsync(UpdateToDoCommand command, CancellationToken cancellationToken)
     {
-        var owner = string.Empty; // TODO: retrieve owner name
+        var owner = _userContext.UserName;
         
-        var toDoList = await _repository.GetAsync(owner, cancellationToken);
+        var toDoList = await _repository.GetAsync(owner, cancellationToken)
+            ?? throw new InvalidOperationException($"No to-do list could be loaded for owner '{owner}'.");
         
         toDoList.UpdateToDo(command.Key, command.Title, command.Description);
         
