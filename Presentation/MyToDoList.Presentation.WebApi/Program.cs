@@ -6,9 +6,16 @@ using MyToDoList.Presentation.WebApi.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services
-    .AddApplication()
-    .AddSqlLite(builder.Configuration);
+builder.Services.AddToDoApplicationServices();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSqlLitePersistenceServices(builder.Configuration);
+}
+else
+{
+    builder.Services.AddSqlServerPersistenceServices(builder.Configuration);
+}
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserContext, HttpUserContext>();

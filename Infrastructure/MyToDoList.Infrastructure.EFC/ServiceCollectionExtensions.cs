@@ -10,7 +10,7 @@ namespace MyToDoList.Infrastructure.EFC;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddSqlLite(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddSqlLitePersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ToDoDbContext>(options =>
             options.UseSqlite(configuration.GetConnectionString("Database")));
@@ -21,7 +21,7 @@ public static class ServiceCollectionExtensions
         return services;
     }
     
-    public static IServiceCollection AddSqlServer(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddSqlServerPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ToDoDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("Database")));
