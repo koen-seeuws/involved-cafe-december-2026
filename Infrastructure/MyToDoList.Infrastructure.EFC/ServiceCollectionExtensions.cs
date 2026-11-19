@@ -35,6 +35,7 @@ public static class ServiceCollectionExtensions
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IRepository<ToDoList, string>, ToDoListBaseRepository>();
+        services.AddScoped<IUnitOfWork, EntifyFrameWorkCoreUnitOfWork>();
 
         return services;
     }

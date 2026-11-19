@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using MyToDoList.Application.Abstractions;
+using MyToDoList.Application.Business.Decorators;
 
 namespace MyToDoList.Application.Business;
 
@@ -23,7 +24,19 @@ public static class ServiceCollectionExtensions
                 .Select(i => (Service: i, Implementation: t)));
 
         foreach (var (service, implementation) in registrations)
-            services.AddScoped(service, implementation);
+        {
+            // The real handler, resolvable only by its concrete type...
+            services.AddScoped(implementation);
+
+            // ...wrapped in a transactional decorator, which is what consumers get for the interface.
+            var decoratorDefinition = service.GetGenericTypeDefinition() == typeof(ICommandHandler<>)
+                ? typeof(TransactionalCommandHandler<>)
+                : typeof(TransactionalCommandHandler<,>);
+            var decorator = decoratorDefinition.MakeGenericType(service.GetGenericArguments());
+
+            services.AddScoped(service, sp =>
+                ActivatorUtilities.CreateInstance(sp, decorator, sp.GetRequiredService(implementation)));
+        }
 
         return services;
     }
