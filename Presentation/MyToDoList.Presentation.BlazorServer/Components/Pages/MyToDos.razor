@@ -4,7 +4,7 @@
 @using MyToDoList.Application.Abstractions.Commands.DeleteToDo
 @using MyToDoList.Application.Abstractions.Commands.UpdateToDo
 @using MyToDoList.Application.Abstractions.Queries.GetMyTodos
-@inject UseCaseDispatcher Dispatcher
+@inject IUseCaseDispatcher Dispatcher
 @inject CurrentUser CurrentUser
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -67,7 +67,7 @@ else
         _loading = true;
         try
         {
-            _toDos = (await Dispatcher.QueryAsync<GetMyToDosQuery, IEnumerable<ToDoDto>>(new GetMyToDosQuery())).ToList();
+            _toDos = (await Dispatcher.QueryAsync(new GetMyToDosQuery())).ToList();
         }
         catch (Exception ex)
         {

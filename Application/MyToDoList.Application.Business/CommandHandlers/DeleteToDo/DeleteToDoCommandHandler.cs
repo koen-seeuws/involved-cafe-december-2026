@@ -3,7 +3,7 @@ using MyToDoList.Application.Abstractions.Commands.DeleteToDo;
 using MyToDoList.Application.Abstractions.Persistence;
 using MyToDoList.Core.Domain;
 
-namespace MyToDoList.Application.Business.Commands.DeleteToDo;
+namespace MyToDoList.Application.Business.CommandHandlers.DeleteToDo;
 
 public class DeleteToDoCommandHandler : ICommandHandler<DeleteToDoCommand>
 {

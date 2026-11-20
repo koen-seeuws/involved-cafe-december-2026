@@ -1,10 +1,10 @@
+using Microsoft.AspNetCore.Components.Server.Circuits;
 using MudBlazor.Services;
 using MyToDoList.Application.Abstractions;
 using MyToDoList.Application.Business;
 using MyToDoList.Infrastructure.EFC;
 using MyToDoList.Presentation.BlazorServer.Components;
 using MyToDoList.Presentation.BlazorServer.Security;
-using MyToDoList.Presentation.BlazorServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +19,13 @@ else
     builder.Services.AddSqlServerPersistenceServices(builder.Configuration);
 }
 
-// Per circuit: who is signed in, and the dispatcher that runs use cases on their behalf.
+// Who is signed in, per circuit (browser tab).
 builder.Services.AddScoped<CurrentUser>();
-builder.Services.AddScoped<UseCaseDispatcher>();
 
-// Per use-case scope (created by the dispatcher).
-builder.Services.AddScoped<OperationUserContext>();
-builder.Services.AddScoped<IUserContext>(sp => sp.GetRequiredService<OperationUserContext>());
+// Lets the use-case scopes created by the dispatcher reach the circuit's CurrentUser.
+builder.Services.AddSingleton<CircuitServicesAccessor>();
+builder.Services.AddScoped<CircuitHandler, CircuitServicesAccessorHandler>();
+builder.Services.AddScoped<IUserContext, CircuitUserContext>();
 
 builder.Services.AddMudServices();
 

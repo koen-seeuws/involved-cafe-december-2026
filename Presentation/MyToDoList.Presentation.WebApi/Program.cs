@@ -21,8 +21,10 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserContext, HttpUserContext>();
 
 builder.Services.AddControllers();
+
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<ExceptionHandler>();
+
 builder.Services.AddOpenApi(options =>
     options.AddOperationTransformer<UserHeaderOperationTransformer>());
 

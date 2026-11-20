@@ -1,6 +1,6 @@
 @page "/all"
 @using MyToDoList.Application.Abstractions.Queries.GetAllToDos
-@inject UseCaseDispatcher Dispatcher
+@inject IUseCaseDispatcher Dispatcher
 @inject ISnackbar Snackbar
 
 <PageTitle>Everybody's to-dos</PageTitle>
@@ -41,7 +41,7 @@
         _loading = true;
         try
         {
-            _toDos = (await Dispatcher.QueryAsync<GetAllToDosQuery, IEnumerable<ToDoDto>>(new GetAllToDosQuery())).ToList();
+            _toDos = (await Dispatcher.QueryAsync(new GetAllToDosQuery())).ToList();
         }
         catch (Exception ex)
         {

@@ -10,15 +10,15 @@ namespace MyToDoList.Presentation.WebApi.Controllers;
 [Produces("application/json")]
 public class ToDosController : ControllerBase
 {
-    private readonly IQueryHandler<GetAllToDosQuery, IEnumerable<ToDoDto>> _getAllToDos;
+    private readonly IUseCaseDispatcher _dispatcher;
 
-    public ToDosController(IQueryHandler<GetAllToDosQuery, IEnumerable<ToDoDto>> getAllToDos)
+    public ToDosController(IUseCaseDispatcher dispatcher)
     {
-        _getAllToDos = getAllToDos;
+        _dispatcher = dispatcher;
     }
 
     [HttpGet]
     [ProducesResponseType<IEnumerable<ToDoDto>>(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<ToDoDto>>> GetAll(CancellationToken ct)
-        => Ok(await _getAllToDos.HandleAsync(new GetAllToDosQuery(), ct));
+        => Ok(await _dispatcher.QueryAsync(new GetAllToDosQuery(), ct));
 }

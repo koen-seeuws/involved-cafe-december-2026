@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyToDoList.Application.Abstractions.Persistence;
 using MyToDoList.Core.Domain.Abstractions;
 
-namespace MyToDoList.Infrastructure.EFC;
+namespace MyToDoList.Infrastructure.EFC.Repositories;
 
 /// <summary>
 /// Base repository that persists an aggregate through a separate EF data model (<typeparamref name="TEntity"/>).

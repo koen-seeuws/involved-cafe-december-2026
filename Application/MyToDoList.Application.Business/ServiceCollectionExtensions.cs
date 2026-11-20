@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MyToDoList.Application.Abstractions;
 using MyToDoList.Application.Business.Decorators;
+using MyToDoList.Application.Business.Dispatching;
 
 namespace MyToDoList.Application.Business;
 
@@ -9,6 +10,9 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddToDoApplicationServices(this IServiceCollection services)
     {
         services.AddCommandHandlers();
+
+        // Runs each use case in its own DI scope.
+        services.AddScoped<IUseCaseDispatcher, UseCaseDispatcher>();
 
         return services;
     }

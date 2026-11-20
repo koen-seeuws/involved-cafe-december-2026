@@ -3,7 +3,7 @@ using MyToDoList.Application.Abstractions.Commands.AddToDo;
 using MyToDoList.Application.Abstractions.Persistence;
 using MyToDoList.Core.Domain;
 
-namespace MyToDoList.Application.Business.Commands.AddToDo;
+namespace MyToDoList.Application.Business.CommandHandlers.AddToDo;
 
 public class AddToDoCommandHandler : ICommandHandler<AddToDoCommand>
 {
