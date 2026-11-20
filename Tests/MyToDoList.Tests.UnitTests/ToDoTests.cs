@@ -1,4 +1,6 @@
-namespace MyToDoList.Core.Domain.Tests;
+using MyToDoList.Core.Domain;
+
+namespace MyToDoList.Tests.UnitTests;
 
 public class ToDoTests
 {

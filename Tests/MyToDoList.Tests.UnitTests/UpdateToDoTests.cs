@@ -1,6 +1,7 @@
-using static MyToDoList.Core.Domain.Tests.ToDoListBuilder;
+using MyToDoList.Core.Domain;
+using static MyToDoList.Tests.UnitTests.ToDoListBuilder;
 
-namespace MyToDoList.Core.Domain.Tests;
+namespace MyToDoList.Tests.UnitTests;
 
 public class UpdateToDoTests
 {

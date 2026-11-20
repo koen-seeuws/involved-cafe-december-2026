@@ -20,7 +20,7 @@ public record GetMyToDosQueryHandler : IQueryHandler<GetMyToDosQuery, IEnumerabl
         var owner = _userContext.UserName;
         
         return await _dbContext.ToDos
-            .Where(todo => todo.ToDoList.Owner == owner)
+            .Where(todo => todo.ToDoList.Owner.ToUpper() == owner.ToUpper())
             .OrderBy(todo => todo.Position)
             .Select(todo => new ToDoDto
             {

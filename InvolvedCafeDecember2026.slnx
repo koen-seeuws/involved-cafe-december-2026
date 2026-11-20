@@ -16,6 +16,6 @@
     <Project Path="Presentation/MyToDoList.Presentation.WebApi/MyToDoList.Presentation.WebApi.csproj" />
   </Folder>
   <Folder Name="/MyToDoList/5. Tests/">
-    <Project Path="Tests/MyToDoList.Core.Domain.Tests/MyToDoList.Core.Domain.Tests.csproj" />
+    <Project Path="Tests\MyToDoList.Tests.UnitTests\MyToDoList.Tests.UnitTests.csproj" />
   </Folder>
 </Solution>

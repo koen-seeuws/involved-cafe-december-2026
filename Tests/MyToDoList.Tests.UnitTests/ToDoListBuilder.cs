@@ -1,6 +1,7 @@
 using System.Collections.Immutable;
+using MyToDoList.Core.Domain;
 
-namespace MyToDoList.Core.Domain.Tests;
+namespace MyToDoList.Tests.UnitTests;
 
 internal static class ToDoListBuilder
 {

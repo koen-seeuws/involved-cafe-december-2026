@@ -13,11 +13,11 @@ public class ToDoListBaseRepository : BaseRepository<Domain.ToDoList, string, Da
 
     protected override IQueryable<DataModel.ToDoList> Query() => DbSet.Include(l => l.ToDos);
 
-    protected override Expression<Func<DataModel.ToDoList, bool>> HasKey(string key) => l => l.Owner == key;
+    protected override Expression<Func<DataModel.ToDoList, bool>> HasKey(string key) => l => l.Owner.ToUpper() == key.ToUpper();
 
     protected override Domain.ToDoList CreateNewAggregate(string key) => new()
     {
-        AggregateKey = key,
+        AggregateKey = key.ToUpper(),
         ToDos = []
     };
 
